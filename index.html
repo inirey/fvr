@@ -1,340 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Our Universe</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --pink:#ff4d6d;
-  --pink-soft:#ff99aa;
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family:Inter, sans-serif;
-  color:#fff;
-  overflow-x:hidden;
-  background:#000;
-}
-
-/* BACKGROUND (layer + blur) */
-.bg{
-  position:fixed; inset:0;
-  background:
-    url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600') center/cover no-repeat;
-  filter:brightness(.4) saturate(1.2);
-  z-index:-3;
-}
-.bg::after{
-  content:"";
-  position:absolute; inset:0;
-  background:radial-gradient(circle at center, rgba(255,77,109,.25), transparent 60%);
-}
-
-/* NAV */
-.nav{
-  position:fixed; top:0; left:0; right:0;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 14px;
-  backdrop-filter:blur(12px);
-  background:rgba(0,0,0,.4);
-  z-index:10;
-}
-.logo{color:var(--pink); font-weight:600}
-.menu a{
-  margin:0 6px; font-size:12px; opacity:.7; cursor:pointer;
-}
-.menu a.active{color:var(--pink); opacity:1}
-
-/* INTRO TAP */
-#intro{
-  position:fixed; inset:0;
-  display:flex; align-items:center; justify-content:center; flex-direction:column;
-  background:#000;
-  z-index:20; cursor:pointer;
-}
-.intro-text{
-  font-family:'Great Vibes',cursive;
-  font-size:32px;
-  color:var(--pink-soft);
-  text-shadow:0 0 20px var(--pink);
-  animation:glow 2s infinite alternate;
-}
-@keyframes glow{to{text-shadow:0 0 40px var(--pink)}}
-
-/* LOADER */
-#loader{
-  position:fixed; inset:0;
-  display:none; align-items:center; justify-content:center; flex-direction:column;
-  background:#000; z-index:15;
-}
-.load-text{
-  font-family:'Great Vibes';
-  font-size:28px;
-  color:var(--pink-soft);
-  text-shadow:0 0 15px var(--pink);
-}
-.bar{
-  width:80%; height:6px; margin:15px 0;
-  background:#222; border-radius:10px; overflow:hidden;
-}
-.progress{
-  width:0%; height:100%;
-  background:linear-gradient(90deg,var(--pink),var(--pink-soft));
-  position:relative; animation:load 3s forwards;
-}
-.progress span{
-  position:absolute; right:-10px; top:-10px;
-  animation:beat 1s infinite;
-}
-@keyframes load{to{width:100%}}
-@keyframes beat{50%{transform:scale(1.3)}}
-
-/* MAIN */
-.main{opacity:0; transform:translateY(20px); transition:1s; padding-top:80px}
-
-/* PROFILE */
-.profiles{
-  display:flex; justify-content:space-around; align-items:center; margin:25px 0;
-}
-.profile{text-align:center}
-.profile img{
-  width:120px;height:120px;border-radius:50%;
-  border:3px solid var(--pink);
-  box-shadow:0 0 20px var(--pink),0 0 60px var(--pink);
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{50%{box-shadow:0 0 100px var(--pink-soft)}}
-.verified{background:#0095f6;border-radius:50%;padding:2px 5px;font-size:10px}
-
-/* CENTER */
-.center{text-align:center}
-.title{
-  font-family:'Great Vibes'; font-size:42px;
-  color:var(--pink-soft); text-shadow:0 0 20px var(--pink);
-}
-.tag{
-  margin-top:6px;
-  border:1px solid var(--pink);
-  padding:5px 12px; border-radius:20px; display:inline-block; font-size:12px;
-}
-
-/* ECG */
-.ecg{
-  margin:10px auto; width:80%; height:30px; position:relative;
-}
-.ecg svg{width:100%; height:100%}
-.ecg path{
-  stroke:var(--pink); stroke-width:2; fill:none;
-  stroke-dasharray:300; stroke-dashoffset:300;
-  animation:ecg 2s linear infinite;
-}
-@keyframes ecg{to{stroke-dashoffset:0}}
-
-/* BOXES */
-.boxes{display:flex; gap:8px; padding:10px}
-.box{
-  flex:1; padding:10px; border-radius:10px;
-  border:1px solid var(--pink);
-  box-shadow:0 0 15px var(--pink);
-  font-size:12px;
-}
-
-/* TIMER */
-.timer{text-align:center; margin:20px 0}
-.big{font-size:30px; color:var(--pink)}
-.grid{
-  display:flex; justify-content:center; gap:6px; flex-wrap:wrap;
-}
-.unit{
-  border:1px solid var(--pink); padding:6px; border-radius:6px; font-size:10px;
-}
-
-/* JOURNEY */
-.journey{padding:15px}
-.journey h2{text-align:center;color:var(--pink-soft)}
-.step{margin:15px 0; border-left:2px solid var(--pink); padding-left:10px; opacity:0; transform:translateY(15px); transition:1s}
-.show{opacity:1; transform:translateY(0)}
-
-/* BOTTOM */
-.bottom{
-  display:flex; justify-content:space-around; margin:20px 0; font-size:12px;
-}
-
-/* FLOAT HEARTS + STARS */
-.heart, .star{
-  position:fixed; pointer-events:none;
-}
-.heart{bottom:-10px; animation:float 5s linear infinite}
-@keyframes float{to{transform:translateY(-100vh);opacity:0}}
-.star{width:2px;height:2px;background:var(--pink);opacity:.5}
-
-/* FOOT */
-.foot{text-align:center; font-size:12px; opacity:.6; padding:15px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Universe ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: {
+                            pink: '#ff2eb6',
+                            dark: '#1a1a2e',
+                            darker: '#121224',
+                        }
+                    },
+                    fontFamily: {
+                        cute: ['"Comic Sans MS"', 'cursive'],
+                        code: ['Consolas', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .glow {
+                box-shadow: 0 0 15px #ff2eb6, 0 0 30px #ff2eb6;
+            }
+            .border-glow {
+                box-shadow: inset 0 0 10px #ff2eb6, 0 0 15px #ff2eb6;
+            }
+            .text-glow {
+                text-shadow: 0 0 5px #ff2eb6, 0 0 10px #ff2eb6, 0 0 20px #ff2eb6;
+            }
+            .heartbeat {
+                animation: heartbeat 1.5s infinite ease-in-out;
+            }
+            .float {
+                animation: float 3s infinite ease-in-out;
+            }
+            .float-slow {
+                animation: float 4s infinite ease-in-out;
+            }
+            .pulse-slow {
+                animation: pulse 4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            }
+            .falling-stars {
+                animation: falling 3s linear infinite;
+            }
+            .wobble {
+                animation: wobble 2s infinite ease-in-out;
+            }
+            .shine {
+                animation: shine 2s infinite linear;
+            }
+            @keyframes heartbeat {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0px); }
+            }
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.7; }
+            }
+            @keyframes falling {
+                0% { transform: translateY(-10px) translateX(0); opacity: 1; }
+                100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
+            }
+            @keyframes wobble {
+                0% { transform: rotate(-2deg); }
+                50% { transform: rotate(2deg); }
+                100% { transform: rotate(-2deg); }
+            }
+            @keyframes shine {
+                0% { background-position: -200% 0; }
+                100% { background-position: 200% 0; }
+            }
+        }
+    </style>
 </head>
+<body class="bg-neon-darker text-white min-h-screen font-cute overflow-x-hidden relative">
 
-<body>
-
-<div class="bg"></div>
-
-<!-- INTRO -->
-<div id="intro" onclick="start()">
-  <div class="intro-text">Tap to enter our world ❤️</div>
-</div>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="load-text">wait moments...</div>
-  <div class="bar"><div class="progress"><span>❤️</span></div></div>
-  <small>Something beautiful is coming...</small>
-</div>
-
-<!-- NAV -->
-<div class="nav">
-  <div class="logo">❤️ Our Universe</div>
-  <div class="menu">
-    <a onclick="go('home',this)" class="active">Home</a>
-    <a onclick="go('story',this)">Our Story</a>
-    <a onclick="go('journey',this)">Moments</a>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main" id="main">
-
-<section id="home">
-  <div class="profiles">
-    <div class="profile">
-      <img src="https://i.ibb.co.com/pvxyc2X6/15b395d3-50fe-4cae-b27b-8fa450e933cf.jpg">
-      <div>Fifi <span class="verified">✔</span></div>
+    <!-- Background Animated Stars -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute w-1 h-1 bg-white rounded-full top-10 left-1/4 falling-stars"></div>
+        <div class="absolute w-1 h-1 bg-white rounded-full top-20 left-3/4 falling-stars" style="animation-delay: 1s;"></div>
+        <div class="absolute w-0.5 h-0.5 bg-white rounded-full top-40 left-1/2 falling-stars" style="animation-delay: 2s;"></div>
+        <div class="absolute w-1 h-1 bg-neon-pink rounded-full top-60 left-1/5 falling-stars" style="animation-delay: 0.5s;"></div>
+        <div class="absolute w-1.5 h-1.5 bg-white rounded-full top-80 left-4/5 falling-stars" style="animation-delay: 1.5s;"></div>
     </div>
 
-    <div class="center">
-      <div class="title">Fifi ❤️ Rey</div>
-      <div class="tag">two souls, one mission</div>
+    <!-- Navbar -->
+    <nav class="bg-neon-dark/80 backdrop-blur-md border-b border-neon-pink/30 px-6 py-3 sticky top-0 z-50 transition-all duration-500 hover:bg-neon-dark/90 hover:border-neon-pink/60">
+        <div class="container mx-auto flex flex-wrap justify-between items-center">
+            <h1 class="text-2xl font-bold text-neon-pink text-glow float">Our Universe</h1>
+            <div class="flex gap-6 items-center flex-wrap mt-2 md:mt-0">
+                <!-- MENU YANG SUDAH AKTIF -->
+                <a href="#home" class="menu-item hover:text-neon-pink transition-all duration-300 transform hover:scale-110 hover:text-glow">
+                    <i class="fa fa-home mr-2"></i>Home
+                </a>
+                <a href="#story" class="menu-item hover:text-neon-pink transition-all duration-300 transform hover:scale-110 hover:text-glow">
+                    <i class="fa fa-book mr-2"></i>Our Story
+                </a>
+                <a href="#moments" class="menu-item hover:text-neon-pink transition-all duration-300 transform hover:scale-110 hover:text-glow">
+                    <i class="fa fa-camera mr-2"></i>Moments
+                </a>
+                <a href="#gallery" class="menu-item hover:text-neon-pink transition-all duration-300 transform hover:scale-110 hover:text-glow">
+                    <i class="fa fa-image mr-2"></i>Gallery
+                </a>
+                <a href="#letters" class="menu-item hover:text-neon-pink transition-all duration-300 transform hover:scale-110 hover:text-glow">
+                    <i class="fa fa-envelope mr-2"></i>Letters
+                </a>
+                <a href="#foryou" class="menu-item hover:text-neon-pink transition-all duration-300 transform hover:scale-110 hover:text-glow">
+                    <i class="fa fa-gift mr-2"></i>For You
+                </a>
+                <button class="bg-neon-pink/20 border border-neon-pink px-4 py-1 rounded-full hover:bg-neon-pink/30 transition-all duration-300 transform hover:scale-105 glow pulse-slow">
+                    <i class="fa fa-moon-o mr-2"></i>Dark Mode
+                </button>
+            </div>
+        </div>
+    </nav>
 
-      <div class="ecg">
-        <svg viewBox="0 0 100 20">
-          <path d="M0 10 L20 10 L25 2 L30 18 L35 10 L100 10"/>
-        </svg>
-      </div>
-    </div>
+    <!-- Loading Section -->
+    <section id="home" class="container mx-auto px-6 py-10 text-center relative z-10">
+        <h2 class="text-4xl text-neon-pink mb-4 italic pulse-slow">wait moments...</h2>
+        <div class="w-1/2 mx-auto h-2 bg-neon-dark rounded-full overflow-hidden border border-neon-pink/50">
+            <div class="h-full bg-neon-pink glow w-3/4 relative animate-pulse">
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-neon-pink rounded-full heartbeat"></div>
+            </div>
+        </div>
+        <p class="text-gray-400 mt-2">Something beautiful is coming...</p>
+    </section>
 
-    <div class="profile">
-      <img src="https://i.ibb.co.com/39XJ8PKc/h-ray-b1-188-Followers-151-Following-1375-Likes-Watch-awesome-short-videos-created-by-R.jpg">
-      <div>Rey <span class="verified">✔</span></div>
-    </div>
-  </div>
-</section>
+    <!-- Profile Section -->
+    <section class="container mx-auto px-6 py-8 relative z-10">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
+            <!-- Fifi -->
+            <div class="text-center transform transition-all duration-700 hover:scale-105 hover:glow">
+                <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-neon-pink border-glow relative pulse-slow wobble">
+                    <img src="fifi.jpg" alt="Fifi" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-neon-pink text-3xl heartbeat"><i class="fa fa-heart"></i></div>
+                </div>
+                <h3 class="text-3xl font-bold mt-4 text-neon-pink text-glow float">Fifi <i class="fa fa-check-circle text-blue-500"></i></h3>
+                <p class="text-gray-400 font-code">coding dreams, sharing laughs</p>
+                <div class="mt-2 text-neon-pink text-xl float-slow"><i class="fa fa-code"></i></div>
+            </div>
 
-<section id="story">
-  <div class="boxes">
-    <div class="box">Love.exe<br>[ Running Perfectly ]</div>
-    <div class="box">// In this world full of temporary things,<br>you are my permanent ❤️</div>
-    <div class="box">Fifi ❤️ Rey<br>[ Connected ]</div>
-  </div>
-</section>
+            <!-- Center -->
+            <div class="text-center">
+                <h2 class="text-5xl text-neon-pink font-bold text-glow shine">Fifi <i class="fa fa-heart text-4xl heartbeat"></i> Rey</h2>
+                <div class="flex items-center justify-center gap-4 mt-4 text-neon-pink text-2xl pulse-slow">
+                    <i class="fa fa-waveform"></i>
+                    <i class="fa fa-heart"></i>
+                    <i class="fa fa-waveform"></i>
+                </div>
+                <div class="bg-neon-dark/50 border border-neon-pink/30 px-6 py-2 rounded-full mt-4 inline-block transform hover:scale-105 transition-all duration-300 glow">
+                    <span class="text-neon-pink">✦</span> two souls, one mission <span class="text-neon-pink">✦</span>
+                </div>
+            </div>
 
-<section class="timer">
-  <p>Together for</p>
-  <div class="big" id="days">0 DAYS</div>
-  <div class="grid" id="grid"></div>
-</section>
+            <!-- Rey -->
+            <div class="text-center transform transition-all duration-700 hover:scale-105 hover:glow">
+                <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-neon-pink border-glow relative pulse-slow wobble" style="animation-delay: 0.5s;">
+                    <img src="rey.jpg" alt="Rey" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-neon-pink text-3xl heartbeat"><i class="fa fa-heart"></i></div>
+                </div>
+                <h3 class="text-3xl font-bold mt-4 text-neon-pink text-glow float">Rey <i class="fa fa-check-circle text-blue-500"></i></h3>
+                <p class="text-gray-400 font-code">anime nights, endless talks</p>
+                <div class="mt-2 text-neon-pink text-xl float-slow" style="animation-delay: 1s;"><i class="fa fa-heart-o"></i></div>
+            </div>
+        </div>
+    </section>
 
-<section id="journey" class="journey">
-  <h2>Our Journey</h2>
-  <div class="step">First Meet — 01 Jan 2024</div>
-  <div class="step">First Talk — 05 Jan 2024</div>
-  <div class="step">First Date — 14 Feb 2024</div>
-  <div class="step">Memorable Day — 21 May 2024</div>
-  <div class="step">Forever ∞</div>
-</section>
+    <!-- Status Cards -->
+    <section class="container mx-auto px-6 py-4 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-neon-dark/70 border border-neon-pink/30 rounded-lg p-4 transform transition-all duration-500 hover:scale-105 hover:border-neon-pink hover:glow">
+                <h4 class="text-neon-pink font-bold mb-2 flex items-center">SYSTEM STATUS <i class="fa fa-heartbeat ml-auto text-red-500 heartbeat"></i></h4>
+                <p class="font-code">Love.exe <span class="text-green-400">[ Running Perfectly ]</span></p>
+                <div class="text-right text-neon-pink text-2xl mt-2 pulse-slow"><i class="fa fa-heart"></i></div>
+            </div>
 
-<div class="bottom">
-  <div>🎵<br>Playlist</div>
-  <div>🎬<br>Moments</div>
-  <div>❤️<br>Us</div>
-  <div>🖼<br>Gallery</div>
-  <div>⭐<br>For You</div>
-</div>
+            <div class="bg-neon-dark/70 border border-neon-pink/30 rounded-lg p-4 transform transition-all duration-500 hover:scale-105 hover:border-neon-pink hover:glow">
+                <p class="font-code text-center italic text-lg">// In this world full of temporary things,<br>you are my permanent. <i class="fa fa-heart text-neon-pink heartbeat"></i></p>
+            </div>
 
-<div class="foot">© 2024 Our Little World • Built with ❤️ Rey</div>
+            <div class="bg-neon-dark/70 border border-neon-pink/30 rounded-lg p-4 transform transition-all duration-500 hover:scale-105 hover:border-neon-pink hover:glow">
+                <h4 class="text-neon-pink font-bold mb-2 flex items-center">CONNECTION <i class="fa fa-wifi ml-auto pulse-slow"></i></h4>
+                <p class="font-code">Fifi <i class="fa fa-heart text-neon-pink"></i> Rey <span class="text-green-400">[ Connected ]</span></p>
+                <div class="text-right text-neon-pink text-2xl mt-2 pulse-slow"><i class="fa fa-heart"></i></div>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Timer Section -->
+    <section class="container mx-auto px-6 py-8 text-center relative z-10">
+        <div class="bg-neon-dark/50 border border-neon-pink/20 rounded-xl p-8 relative overflow-hidden transform transition-all duration-700 hover:scale-[1.01] glow">
+            <div class="absolute left-8 top-1/2 -translate-y-1/2 text-neon-pink text-6xl opacity-30 float">
+                <i class="fa fa-heart"></i>
+            </div>
+            <div class="absolute right-8 top-1/2 -translate-y-1/2 text-neon-pink text-6xl opacity-30 float" style="animation-delay: 1.5s;">
+                <i class="fa fa-jar"></i>
+            </div>
 
-<audio id="music" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
+            <p class="text-gray-400 mb-2">Together for</p>
+            <h3 class="text-6xl font-bold text-neon-pink text-glow mb-4 pulse-slow">365 DAYS</h3>
 
-<script>
-function start(){
-  intro.style.display="none";
-  loader.style.display="flex";
-  music.play().catch(()=>{});
-  setTimeout(()=>{
-    loader.style.display="none";
-    main.style.opacity=1;
-    main.style.transform="translateY(0)";
-  },3000);
-}
-
-function go(id,el){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
-  el.classList.add('active');
-}
-
-/* TIMER */
-const startDate=new Date("2024-01-01");
-setInterval(()=>{
-  let now=new Date();
-  let diff=now-startDate;
-  let d=Math.floor(diff/86400000);
-  let h=Math.floor(diff/3600000)%24;
-  let m=Math.floor(diff/60000)%60;
-  let s=Math.floor(diff/1000)%60;
-
-  days.innerText=d+" DAYS";
-  grid.innerHTML=`
-    <div class="unit">${d} DAYS</div>
-    <div class="unit">${h} HOURS</div>
-    <div class="unit">${m} MIN</div>
-    <div class="unit">${s} SEC</div>
-  `;
-},1000);
-
-/* SCROLL ANIM */
-window.addEventListener('scroll',()=>{
-  document.querySelectorAll('.step').forEach(e=>{
-    if(e.getBoundingClientRect().top < window.innerHeight-40){
-      e.classList.add('show');
-    }
-  });
-});
-
-/* HEART FLOAT */
-setInterval(()=>{
-  let h=document.createElement('div');
-  h.className='heart';
-  h.innerHTML='❤️';
-  h.style.left=Math.random()*100+'vw';
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),5000);
-},300);
-
-/* STARS */
-for(let i=0;i<80;i++){
-  let s=document.createElement('div');
-  s.className='star';
-  s.style.top=Math.random()*100+'vh';
-  s.style.left=Math.random()*100+'vw';
-  document.body.appendChild(s);
-}
-</script>
-
-</body>
-</html>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <div class="bg-neon-dark/80 border border-neon-pink/30 rounded-lg px-4 py-2 transform transition-all duration-300 hover:scale-110 hover:glow">
+                    <span class="text-2xl font-bold">11</span>
+                    <p class="text-xs text-gray-400">MONTHS</p>
+                </div>
+                <div class="bg-neon-dark/80 border border-neon-pink/30 rounded-lg px-4 py-2 transform transition-all duration-300 hover:scale-110 hover:glow">
+                    <span class="text-2xl font-bold">30</span>
+                    <p class="text-xs text-gray-400">DAYS</p>
+                </div>
+                <div class="bg-neon-dark/80 border border-neon-pink/30 rounded-lg px-4 py-2 transform transition-all duration-300 hover:scale-110 hover:glow">
+                    <span class="text-2xl font-bold">12</span>
+                    <p class="text-xs text-gray-400">HOURS</p>
+                </div>
+                <div class="bg-neon-dark/80 border border-neon-pink/30 rounded-lg px-4 py-2 transform transition-all duration-300 hover:scale-110 hover:glow">
+                    <span class="text-2xl font-bold">45</span>
+                    <p class="text-xs text-gray-400">MINUTES</p>
+                </div>
+                <div class="bg-neon-dark/80 border border-neon-pink/30 rounded-lg px-4 py-2 transform transition-all duration-300 hover:scale-1
